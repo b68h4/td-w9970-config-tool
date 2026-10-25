@@ -32,7 +32,7 @@ from hashlib import md5
 # The LZSS compress/uncompress routines live in the referenced upstream script.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "referenced_scripts"))
-import tp  # noqa: E402  (path is set up above)
+import tpconf_bin_xml as tp  # noqa: E402  (path is set up above)
 
 try:
     from Cryptodome.Cipher import DES   # pycryptodomex

@@ -73,9 +73,9 @@ python3 w9970_conf.py conf.bin conf.xml --key 44b59d3dc90e1dfe
 ```
 w9970_conf.py           # the tool (decrypt / encrypt)
 requirements.txt
-referenced_scripts/     # upstream references used for the LZSS codec
-  ├── tp.py             # Alain Ducharme's tpconf_bin_xml (compress/uncompress)
-  └── tp.rb             # a Ruby DES reference for the same format
+referenced_scripts/            # upstream references used for the LZSS codec
+  ├── tpconf_bin_xml.py        # Alain Ducharme's tpconf_bin_xml (compress/uncompress)
+  └── tp.rb                    # a Ruby DES reference for the same format
 ```
 
 ## How this was figured out
@@ -127,7 +127,7 @@ actual key came from the brute force.
 
 - LZSS compress/uncompress and the overall `.bin`/`.xml` format:
   Alain Ducharme's [`tpconf_bin_xml`](https://github.com/sta-c0000/tpconf_bin_xml)
-  (`referenced_scripts/tp.py`).
+  (`referenced_scripts/tpconf_bin_xml.py`).
 
 ## Disclaimer
 
