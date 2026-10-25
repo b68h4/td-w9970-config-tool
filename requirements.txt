@@ -1,0 +1,5 @@
+# Only dependency: a DES implementation.
+# pycryptodomex installs under the "Cryptodome" namespace (recommended).
+pycryptodomex>=3.20.0
+# If you prefer the "Crypto" namespace instead, use this one and remove the line above:
+# pycryptodome>=3.20.0

@@ -1,0 +1,15 @@
+# Personal router backups (contain PPPoE/Wi-Fi passwords, serial number, etc.)
+conf.bin
+conf.xml
+*.cfg
+
+# TP-Link firmware images (large, copyrighted) - keep out of the repo
+*.bin
+!sample/*.bin
+
+# Python / OS cruft
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
