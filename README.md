@@ -23,13 +23,23 @@ into a valid `conf.bin` you can restore to the router.
 Other TD-W9970 variants (different ISPs/regions) use a **different Product ID**,
 hence a different key. See [Other devices / keys](#other-devices--keys).
 
-## Install
+## Installation
+
+Requires **Python 3.8+**. The only dependency is a DES implementation
+(`pycryptodomex`).
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/b68h4/td-w9970-config-tool.git
+cd td-w9970-config-tool
+
+# 2. (optional) create a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+
+# 3. Install the dependency
 pip install -r requirements.txt
 ```
-
-The only dependency is a DES implementation (`pycryptodomex`). Python 3.8+.
 
 ## Usage
 
@@ -42,6 +52,28 @@ python3 w9970_conf.py conf.bin conf.xml
 # Re-encrypt: conf.xml -> conf_new.bin  (restore this to the router)
 python3 w9970_conf.py conf.xml conf_new.bin
 ```
+
+### Worked example
+
+```console
+$ python3 w9970_conf.py conf.bin conf.xml
+Decrypted: conf.bin -> conf.xml (41091 bytes), key=44b59d3dc90e1dfe
+
+$ head -5 conf.xml
+<?xml version="1.0"?>
+<DslCpeConfig>
+  <InternetGatewayDevice>
+    <DeviceSummary val="InternetGatewayDevice:1.1[](Baseline:1, EthernetLAN:1)" />
+    <LANDeviceNumberOfEntries val=1 />
+
+# ... edit conf.xml as needed, then pack it back ...
+
+$ python3 w9970_conf.py conf.xml conf_new.bin
+Encrypted: conf.xml -> conf_new.bin (7272 bytes), key=44b59d3dc90e1dfe
+```
+
+`-h` shows all options, including `-f/--force` (overwrite output),
+`-p/--product-id` and `-k/--key`.
 
 The direction is auto-detected from the input (a file starting with `<?xml`
 is encrypted, otherwise it is decrypted). Use `-f` to overwrite the output.
@@ -128,6 +160,15 @@ actual key came from the brute force.
 - LZSS compress/uncompress and the overall `.bin`/`.xml` format:
   Alain Ducharme's [`tpconf_bin_xml`](https://github.com/sta-c0000/tpconf_bin_xml)
   (`referenced_scripts/tpconf_bin_xml.py`).
+
+## License
+
+Licensed under the **GNU General Public License v3.0** — see [`LICENSE`](LICENSE).
+
+This is free software: you may use, modify and redistribute it, but any copy or
+derivative **must stay under the GPLv3** and preserve attribution to the original
+author. The project bundles and imports `tpconf_bin_xml.py` by Alain Ducharme,
+which is itself GPLv3, so GPLv3 applies to the whole work.
 
 ## Disclaimer
 
