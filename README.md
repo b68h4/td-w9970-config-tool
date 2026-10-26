@@ -147,7 +147,7 @@ path to the key, step by step:
    byte). The canonical key is `44b59d3dc90e1dfe`, from Product ID `0x08860001`.
 
 6. **Decrypt → decompress → verify.** The decrypted payload was big-endian
-   LZSS-compressed XML, unpacked with the referenced `tp.py`. Finally,
+   LZSS-compressed XML, unpacked with the referenced `tpconf_bin_xml.py`. Finally,
    re-encrypting the XML reproduced the **byte-for-byte identical** original
    `conf.bin`, proving the key, scheme and compression are all correct.
 
